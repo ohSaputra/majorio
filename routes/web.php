@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('test');
 });
+
+// Route::get('/{id}', 'CounterController@index');
+
+Route::resource('count', 'CounterController');

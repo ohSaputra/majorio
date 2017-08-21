@@ -16,7 +16,7 @@ class CounterController extends Controller
         //Initiate variable
         // $base_value = [5, 8, 7, 9, 10, 2, 4, 5, 9, 6];
         // $base_value = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-        $base_value = [10, 5, 1, 10, 10, 10, 1, 1, 1, 1];
+        $base_value = [10, 5, 1, 10, 10, 10, 1, 1, 10, 10];
 
         // build matrix
         $base_matrix = $this -> build_matrix( $base_value );
@@ -27,8 +27,11 @@ class CounterController extends Controller
         // build supermatrix from deffuzzyfication
         $base_supermatrix = $this -> build_supermatrix( $base_fuzzy );
 
+        // build supermatrix from deffuzzyfication
+        $base_limit = $this -> build_supermatrix( $base_supermatrix );
+
         // calculate eigenvector
-        $base_eigenvector = $this -> build_eigenvector( $base_supermatrix );
+        $base_eigenvector = $this -> build_eigenvector( $base_limit );
 
         // calculate overall weighted criteria W21 (priorities) * W22 (interdepedence)
         $base_overall = $this -> build_overall ( $base_eigenvector );
@@ -61,16 +64,16 @@ class CounterController extends Controller
         // var_dump($base_matrix);
         // var_dump($base_fuzzy);
         // var_dump($base_supermatrix);
-        // var_dump($base_eigenvector);
-        var_dump($base_overall);
+        var_dump($base_eigenvector);
+        // var_dump($base_overall);
         // var_dump($topsis_matrix);
         // var_dump($topsis_square);
         // var_dump($topsis_mean);
         // var_dump($topsis_normalized);
         // var_dump($topsis_weighted);
         // var_dump($topsis_minmax);
-        var_dump($topsis_ideal);
-        var_dump($topsis_rank);
+        // var_dump($topsis_ideal);
+        // var_dump($topsis_rank);
 
     }
 

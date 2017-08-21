@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('test');
+    return view('welcome');
 });
 
 // Route::get('/{id}', 'CounterController@index');
 
 Route::resource('count', 'CounterController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

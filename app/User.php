@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'institution', 'password',
     ];
 
     /**
@@ -26,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the quiz that ever do by this user
+     */
+    public function quiz() {
+        return $this->hasMany('App\Quiz');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuizTable extends Migration
+class CreateQuizzesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,8 +16,6 @@ class CreateQuizTable extends Migration
         Schema::create('quiz', function (Blueprint $table) {
             $table->increments('quizID');
             $table->integer('userID');
-            $table->integer('questionnaireID');
-            $table->integer('resultID');
             $table->timestamps();
         });
     }

@@ -1,1 +1,0 @@
-<h1>Hello world! {{$name}} {{$password}}</h1>

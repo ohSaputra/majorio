@@ -11,13 +11,43 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('page_home');
 });
 
-// Route::get('/{id}', 'CounterController@index');
+Route::get('connect', [
+    'as' => 'connect.get',
+    'uses' => 'ConnectController@show'
+]);
 
-Route::resource('count', 'CounterController');
+Route::post('connect', [
+    'as' => 'connect.post',
+    'uses' => 'ConnectController@index'
+]);
+
+
+Route::get('quiz', [
+    'as' => 'quiz',
+    'uses' => 'QuizController@index'
+]);
+
+Route::post('quiz', [
+    'as' => 'count',
+    'uses' => 'QuizController@count'
+]);
+
+// Route::resource('count', 'CounterController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('result', function() {
+    return view('page_result');
+})->name('result');
+
+// Route::resource('admin/users', 'AdminUsersController');

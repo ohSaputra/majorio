@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResultTable extends Migration
+class CreateResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,16 +15,17 @@ class CreateResultTable extends Migration
     {
         Schema::create('result', function (Blueprint $table) {
             $table->increments('resultID');
-            $table->float('A1');
-            $table->float('A2');
-            $table->float('A3');
-            $table->float('A4');
-            $table->float('A5');
-            $table->float('A6');
-            $table->float('A7');
-            $table->float('A8');
-            $table->float('A9');
-            $table->float('A10');
+            $table->integer('quizID');
+            $table->float('A1', 4, 4);
+            $table->float('A2', 4, 4);
+            $table->float('A3', 4, 4);
+            $table->float('A4', 4, 4);
+            $table->float('A5', 4, 4);
+            $table->float('A6', 4, 4);
+            $table->float('A7', 4, 4);
+            $table->float('A8', 4, 4);
+            $table->float('A9', 4, 4);
+            $table->float('A10', 4, 4);
             $table->timestamps();
         });
     }

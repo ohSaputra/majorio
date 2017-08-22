@@ -1,22 +1,54 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App;
 
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
-class CounterController extends Controller
+class Quiz extends Model
 {
+    //
+
+    protected $table = 'quiz';
+
+    protected $primaryKey = 'quizID';
+
+    /**
+    * Get the user that do the quiz
+    */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'id');
+    }
+
+    /**
+    * Get the result data
+    */
+    public function result()
+    {
+        return $this->hasOne('App\Result', 'quizID');
+    }
+
+    /**
+    * Get the questionnaire data
+    */
+    public function questionnaire()
+    {
+        return $this->hasOne('App\Questionnaire', 'quizID');
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function count($data_array = [])
     {
         //Initiate variable
         // $base_value = [5, 8, 7, 9, 10, 2, 4, 5, 9, 6];
         // $base_value = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-        $base_value = [10, 5, 1, 10, 10, 10, 1, 1, 10, 10];
+        // $base_value = [10, 5, 1, 10, 10, 10, 1, 1, 10, 10];
+
+        $base_value = $data_array;
 
         // build matrix
         $base_matrix = $this -> build_matrix( $base_value );
@@ -64,7 +96,8 @@ class CounterController extends Controller
         // var_dump($base_matrix);
         // var_dump($base_fuzzy);
         // var_dump($base_supermatrix);
-        var_dump($base_eigenvector);
+        // var_dump($base_limit);
+        // var_dump($base_eigenvector);
         // var_dump($base_overall);
         // var_dump($topsis_matrix);
         // var_dump($topsis_square);
@@ -75,88 +108,10 @@ class CounterController extends Controller
         // var_dump($topsis_ideal);
         // var_dump($topsis_rank);
 
+        return $topsis_rank;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // Test show message
-
-        return 'Hi This is Show Methods';
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
-    * Show test view using test.blade.php
-    *
-    * @param  string  $name
-    * @return \Illuminate\Http\Response
-    */
-    public function show_test ($name, $password) {
-        
-        return view('test', compact('name', 'password'));
-
-    }
-
+   
     /**
     * Build matrix from array
     *
@@ -414,7 +369,8 @@ class CounterController extends Controller
     public function build_overall ( $eigenvector = array() ) {
 
         // interdepedence data
-        $data_interdepedence = [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ];
+        $data_interdepedence = [ 0.0992, 0.1082, 0.0936, 0.0936, 0.0936, 0.1409, 0.0777, 0.1227, 0.0769, 0.0936 ];
+
 
         //  Initialize variabel
         $column = 10;
@@ -444,7 +400,7 @@ class CounterController extends Controller
         // initialize base alternative data
         $data_alternative = array (
 
-            0 => [ 0.214, 0.1024, 0.0138, 0.1539, 0.2264, 0.2264, 0.1024, 0.0214, 0.0660, 0.0660],
+            0 => [ 0.0214, 0.1024, 0.0138, 0.1539, 0.2264, 0.2264, 0.1024, 0.0214, 0.0660, 0.0660 ],
             1 => [ 0.0466, 0.2461, 0.0160, 0.0450, 0.2449, 0.0466, 0.0156, 0.2461, 0.0466, 0.0466],
             2 => [ 0.0916, 0.0134, 0.0317, 0.0916, 0.0916, 0.0916, 0.0446, 0.0232, 0.2604, 0.2604 ],
             3 => [ 0.0288, 0.0621, 0.0133, 0.1926, 0.1227, 0.2563, 0.0155, 0.0612, 0.1258, 0.1217 ],
@@ -453,9 +409,10 @@ class CounterController extends Controller
             6 => [ 0.0256, 0.1971, 0.1234, 0.0142, 0.1212, 0.0189, 0.1971, 0.2057, 0.0484, 0.0484 ],
             7 => [ 0.0456, 0.0197, 0.2682, 0.0285, 0.0395, 0.0961, 0.0961, 0.0353, 0.2237, 0.1473  ],
             8 => [ 0.0502, 0.2587, 0.1890, 0.0145, 0.0722, 0.0250, 0.2587, 0.0884, 0.0183, 0.0250 ],
-            9 => [ 0.0296, 0.0296, 0.0473, 0.3008, 0.0155, 0.0580, 0.0205, 0.0797, 0.0391, 0.2016, 0.2080 ]
+            9 => [ 0.0296, 0.0473, 0.3008, 0.0155, 0.0580, 0.0205, 0.0797, 0.0391, 0.2016, 0.2080 ]
 
         );
+
 
         // Initialize variabel
         $column = 10;
@@ -507,6 +464,8 @@ class CounterController extends Controller
             // loop rows in matrix
             for ( $loop_row = 0; $loop_row < $row;  $loop_row++ ) {
 
+                $power = pow($topsis_matrix[ $loop_row ][ $loop_column ], 2);
+
                 // sumarize total
                 $topsis_square[ $loop_row ][ $loop_column ] = pow($topsis_matrix[ $loop_row ][ $loop_column ], 2);
 
@@ -545,6 +504,8 @@ class CounterController extends Controller
                 $result += $topsis_matrix[ $loop_column ][ $loop_row ];
 
             }
+
+            // var_dump($result);
 
             // store calculated data and square it
             $topsis_mean[ $loop_column ] = sqrt($result);
@@ -714,7 +675,7 @@ class CounterController extends Controller
 
             $topsis_rank[ 'data' ][ $loop_row ] = $root_min / ( $root_max + $root_min ); 
 
-            echo 'root max: ' . $root_max . ' root min: ' . $root_min . ' result ' . $root_min / ( $root_max + $root_min ) . ' <br> ';
+            // echo 'root max: ' . $root_max . ' root min: ' . $root_min . ' result ' . $root_min / ( $root_max + $root_min ) . ' <br> ';
             
         }
 

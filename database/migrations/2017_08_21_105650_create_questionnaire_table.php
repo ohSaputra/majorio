@@ -15,6 +15,7 @@ class CreateQuestionnaireTable extends Migration
     {
         Schema::create('questionnaire', function (Blueprint $table) {
             $table->increments('questionnaireID');
+            $table->integer('quizID');
             $table->integer('C1');
             $table->integer('C2');
             $table->integer('C3');

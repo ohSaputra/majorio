@@ -21,7 +21,7 @@
 
         <div class="description">
             <h2 class="headline">MAJORIO</h2>
-            <p>Sebuah Aplikasi berbasis Web yang dapat digunakan untuk menentukan Program Studi. MAJORIO berbasis pada penghitungan Fuzzy ANP dan TOPSIS.</p>
+            <p>Sebuah Aplikasi berbasis Web yang dapat digunakan untuk menentukan Program Studi.</p>
             <a href="{{ route('connect.get') }}" class="btn btn-primary">Take Test</a>
         </div>
 

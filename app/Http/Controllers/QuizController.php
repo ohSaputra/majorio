@@ -61,6 +61,7 @@ class QuizController extends Controller
         foreach ($alternatives as $alternative) {
             $rank[$loop]['value'] = $result['data'][$loop];
             $rank[$loop]['name'] = $alternative->name;
+            $rank[$loop]['id'] = $alternative->alternativeID;
 
             $loop++;
         }
@@ -69,6 +70,7 @@ class QuizController extends Controller
         // get user id
         $user_id = Auth::id();
         $quiz_db->userID = $user_id;
+        $quiz_db->best = $rank[0]['id'];
 
         $question_db = new Questionnaire;
         $question_db->C1 = $data[0];

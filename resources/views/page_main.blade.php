@@ -24,7 +24,7 @@
                 <div class="breadcrumb px-0">
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                        class="float-right">Logout</a>
+                        class="float-right">Keluar (Logout)</a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
@@ -41,7 +41,7 @@
                         <div class="main-item text-center">
                             <a href="{{ route('quiz') }}">
                                 <div class="btn">
-                                        TAKE TEST
+                                        Ambil Test
                                 </div>
                             </a>                   
                         </div>
@@ -55,9 +55,11 @@
 
                         <!-- main item starts -->
                         <div class="main-item text-center">
-                            <div class="btn">
-                                HISTORY
-                            </div>                   
+                            <a href="{{ route('history') }}">
+                                <div class="btn">
+                                    Riwayat Test
+                                </div>
+                            </a>                   
                         </div>
                         <!-- main item ends -->
                     </div>

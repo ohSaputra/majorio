@@ -21,7 +21,7 @@
 
         <div class="description">
             <h2 class="headline">MAJORIO</h2>
-            <p>Here he comes Here comes Speed Racer. He's a demon on wheels. Come and play. Everything's A-OK.</p>
+            <p>Sebuah Aplikasi berbasis Web yang dapat digunakan untuk menentukan Program Studi. MAJORIO berbasis pada penghitungan Fuzzy ANP dan TOPSIS.</p>
             <a href="{{ route('connect.get') }}" class="btn btn-primary">Take Test</a>
         </div>
 

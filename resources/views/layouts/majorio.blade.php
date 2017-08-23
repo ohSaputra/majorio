@@ -48,7 +48,7 @@
       <nav class="navbar navbar-expand-lg navbar-light justify-content-between" role="navigation">
 
         <!-- nav-brands starts -->
-        <h1 class="navbar-brand mx-auto"><a href="/">MAJORIO</a></h1>
+        <h1 class="navbar-brand mx-auto"><a href="/"><img src="images/majorio_logo.png" alt=""></a></h1>
         <!-- nav-brands ends -->
         
           <!-- navbar-nav starts  -->

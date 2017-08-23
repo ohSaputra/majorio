@@ -50,4 +50,10 @@ Route::get('result', function() {
     return view('page_result');
 })->name('result');
 
+Route::get('history', [
+    'as' => 'history',
+    'uses' => 'HistoryController@index'
+]);
+
+
 // Route::resource('admin/users', 'AdminUsersController');
